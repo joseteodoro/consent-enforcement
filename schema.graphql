@@ -1,0 +1,43 @@
+type DataType {
+    id: ID!
+    display: String!
+    uuid: String!
+}
+
+type Group {
+    id: ID!
+    display: String!
+    uuid: String!
+}
+
+type Patient {
+    id: ID!
+    display: String!
+    uuid: User!
+}
+
+type Consent {
+    id: ID!
+    display: ID!
+    uuid: String!
+    readerId: ID!
+    targetId: ID!
+}
+
+type ConsentEnforcement {
+    id: ID!
+    display: ID!
+    uuid: String!
+    readerId: ID!
+    targetId: ID!
+}
+
+type Mutation {
+    createDataType(input: NewDataType!): DataType! @isAuthenticated
+}
+
+type Query {
+    DataTypes(limit: Int = 25, offset: Int = 0): [DataType!]!
+}
+
+directive @isAuthenticated on FIELD_DEFINITION
