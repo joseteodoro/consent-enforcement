@@ -6,9 +6,9 @@
 schema:
 - schema.graphql
 exec:
-  filename: generated.go
+  filename: pkg/consent_manager/executable_schema.go
 model:
-  filename: models_gen.go
+  filename: pkg/consent_manager/models.go
 resolver:
-  filename: resolver.go
+  filename: pkg/consent_manager/resolvers.go
   type: Resolver
