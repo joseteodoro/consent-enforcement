@@ -14,23 +14,23 @@ type Group {
 type Patient {
     id: ID!
     display: String!
-    uuid: User!
+    uuid: String!
     privateKey: String!
     publicKey: String! 
     groups: [Group!]!
     dataTypes: [DataType!]!
-    acessToken: String!
+    restorePhrase: String!
     passprase: String!
 }
 
 type Practioner {
     id: ID!
     display: String!
-    uuid: User!
+    uuid: String!
     privateKey: String!
     publicKey: String!
     groups: [Group!]!
-    acessToken: String!
+    restorePhrase: String!
     passprase: String!
 }
 
@@ -61,23 +61,29 @@ type ConsentEnforcement {
     expiration: Int!
 }
 
+type AccessToken {
+    id: ID!
+    uuid: String!
+    patientId: ID!,
+    practionerId: ID!
+    expiration: Int!
+}
+
 type Mutation {
-    createDataType(display: String!): DataType! @isAuthenticated
-    createGroup(display: String!): Group! @isAuthenticated
-    createPatient(display: String!, groups: [ID!]!, dataTypes: [ID!]!): Patient! @isAuthenticated
-    createPractioner(display: String!, groups: [ID!]!): Practioner! @isAuthenticated
-    createConsentEnforcementRule(display: String!, readerGroups: [ID!]!, targetGroups: [ID!]!, expiration: Int!): ConsentEnforcement! @isAuthenticated
-    createContract(display: String!, clauses: [String!]!): Contract! @isAuthenticated
-    giveConsent(patientId: ID!, contractId: ID!, expiration: Int!): Signature! @isAuthenticated
-    patientResetAcessToken(patientId: ID!, passprase: String!): Patient! @isAuthenticate
-    practionerResetAcessToken(practionerId: ID!, passprase: String!): Practioner! @isAuthenticate
+    createDataType(display: String!): DataType!
+    createGroup(display: String!): Group!
+    createPatient(display: String!, groups: [ID!]!, dataTypes: [ID!]!): Patient!
+    createPractioner(display: String!, groups: [ID!]!): Practioner!
+    createConsentEnforcementRule(display: String!, readerGroups: [ID!]!, targetGroups: [ID!]!, expiration: Int!): ConsentEnforcement!
+    createContract(display: String!, clauses: [String!]!): Contract!
+    giveConsent(patientId: ID!, contractId: ID!, expiration: Int!): Signature!
+    patientResetPassphase(patientId: ID!, restorePhrase: String!): Patient!
+    practionerResetPassphase(practionerId: ID!, restorePhrase: String!): Practioner!
 }
 
 type Query {
-    DataTypes(limit: Int = 25, offset: Int = 0): [DataType!]!
+    dataTypes(limit: Int = 25, offset: Int = 0): [DataType!]!
     PublicGroups(display: String, limit: Int = 25, offset: Int = 0): [Group!]!
-    consent(patientId: ID!, practionerId: ID!): Boolean
-    consentEnforcement(patientId: ID!, practionerId: ID!, reason: String!): Boolean
+    Consent(patientId: ID!, practionerId: ID!, dataTypeId: ID): AccessToken
+    ConsentEnforcement(patientId: ID!, practionerId: ID!, reason: String!): AccessToken
 }
-
-directive @isAuthenticated on FIELD_DEFINITION
