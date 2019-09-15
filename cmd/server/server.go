@@ -1,5 +1,14 @@
 package main
 
+// import (
+// 	"log"
+// 	"net/http"
+// 	"os"
+
+// 	"github.com/99designs/gqlgen/handler"
+// 	"github.com/joseteodoro/consent-enforcement/pkg/consent_manager"
+// )
+
 import (
 	"log"
 	"net/http"
@@ -16,6 +25,16 @@ func main() {
 	if port == "" {
 		port = defaultPort
 	}
+
+	// database := consent_manager.Connect(nil)
+	// docs, err := database.QueryJSON(`
+	// {
+	// 	"selector": {
+	// 	   "type": "DataType"
+	// 	}
+	//  }
+	// `)
+	// fmt.Println("db access", docs, err)
 
 	http.Handle("/", handler.Playground("GraphQL playground", "/query"))
 	rootHandler := handler.GraphQL(

@@ -32,6 +32,12 @@
   version = "v0.5.3"
 
 [[projects]]
+  name = "github.com/leesper/couchdb-golang"
+  packages = ["."]
+  revision = "1fe73a5682dc83913c5944b52a8506b9e2f85717"
+  version = "v1.2.1"
+
+[[projects]]
   name = "github.com/pkg/errors"
   packages = ["."]
   revision = "ba968bfe8b2f7e042a574c888954fccecfa385b4"
@@ -70,6 +76,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "4bfb8eb11c3a9e9ece4e0923f0a5cb8b58dd86ee095258728ad8eb9128c52f86"
+  inputs-digest = "d3add84ccff2be1e700351fdd9fbcf8f99be9dfd826dc30e1ee33ff6d9e3e526"
   solver-name = "gps-cdcl"
   solver-version = 1
