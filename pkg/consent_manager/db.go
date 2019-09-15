@@ -35,12 +35,10 @@ func Connect(config *DBConfig) *couchdb.Database {
 		panic(fmt.Sprintf("Cannot connect on couchdb: %v", err))
 	}
 
-	token, err := server.Login(configuration.Username, configuration.Password)
+	_, err = server.Login(configuration.Username, configuration.Password)
 	if err != nil {
 		panic(fmt.Sprintf("Could not login on server: %v", err))
 	}
-
-	fmt.Print("Logged in.", token)
 
 	database, err := server.Get(configuration.DBName)
 	if err != nil {
