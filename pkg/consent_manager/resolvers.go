@@ -2,7 +2,7 @@ package consent_manager
 
 import (
 	"context"
-) // THIS CODE IS A STARTING POINT ONLY. IT WILL NOT BE UPDATED WITH SCHEMA CHANGES.
+)
 
 type Resolver struct{}
 
@@ -56,4 +56,10 @@ func (r *queryResolver) Consent(ctx context.Context, patientID string, practione
 }
 func (r *queryResolver) ConsentEnforcement(ctx context.Context, patientID string, practionerID string, reason string) (*AccessToken, error) {
 	panic("not implemented")
+}
+
+// NewRootResolvers works a root resolver for other ones
+func NewRootResolvers() Config {
+	c := Config{Resolvers: &Resolver{}}
+	return c
 }
