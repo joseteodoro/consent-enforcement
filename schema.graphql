@@ -70,19 +70,19 @@ type AccessToken {
 }
 
 type Mutation {
-    createDataType(display: String!): DataType!
-    createGroup(display: String!): Group!
-    createPatient(display: String!, groups: [ID!]!, dataTypes: [ID!]!): Patient!
-    createPractioner(display: String!, groups: [ID!]!): Practioner!
-    createConsentEnforcementRule(display: String!, readerGroups: [ID!]!, targetGroups: [ID!]!, expiration: Int!): ConsentEnforcement!
-    createContract(display: String!, clauses: [String!]!): Contract!
-    giveConsent(patientId: ID!, contractId: ID!, expiration: Int!): Signature!
-    patientResetPassphase(patientId: ID!, restorePhrase: String!): Patient!
-    practionerResetPassphase(practionerId: ID!, restorePhrase: String!): Practioner!
+    CreateDataType(display: String!): DataType!
+    CreateGroup(display: String!): Group!
+    CreatePatient(display: String!, groups: [ID!]!, dataTypes: [ID!]!): Patient!
+    CreatePractioner(display: String!, groups: [ID!]!): Practioner!
+    CreateConsentEnforcementRule(display: String!, readerGroups: [ID!]!, targetGroups: [ID!]!, expiration: Int!): ConsentEnforcement!
+    CreateContract(display: String!, clauses: [String!]!): Contract!
+    GiveConsent(patientId: ID!, contractId: ID!, expiration: Int!): Signature!
+    PatientResetPassphase(patientId: ID!, restorePhrase: String!): Patient!
+    PractionerResetPassphase(practionerId: ID!, restorePhrase: String!): Practioner!
 }
 
 type Query {
-    dataTypes(limit: Int = 25, offset: Int = 0): [DataType!]!
+    DataTypes(limit: Int = 25, offset: Int = 0): [DataType!]!
     PublicGroups(display: String, limit: Int = 25, offset: Int = 0): [Group!]!
     Consent(patientId: ID!, practionerId: ID!, dataTypeId: ID): AccessToken
     ConsentEnforcement(patientId: ID!, practionerId: ID!, reason: String!): AccessToken

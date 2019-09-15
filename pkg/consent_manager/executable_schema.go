@@ -334,108 +334,108 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Group.UUID(childComplexity), true
 
-	case "Mutation.createConsentEnforcementRule":
+	case "Mutation.CreateConsentEnforcementRule":
 		if e.complexity.Mutation.CreateConsentEnforcementRule == nil {
 			break
 		}
 
-		args, err := ec.field_Mutation_createConsentEnforcementRule_args(context.TODO(), rawArgs)
+		args, err := ec.field_Mutation_CreateConsentEnforcementRule_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Mutation.CreateConsentEnforcementRule(childComplexity, args["display"].(string), args["readerGroups"].([]string), args["targetGroups"].([]string), args["expiration"].(int)), true
 
-	case "Mutation.createContract":
+	case "Mutation.CreateContract":
 		if e.complexity.Mutation.CreateContract == nil {
 			break
 		}
 
-		args, err := ec.field_Mutation_createContract_args(context.TODO(), rawArgs)
+		args, err := ec.field_Mutation_CreateContract_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Mutation.CreateContract(childComplexity, args["display"].(string), args["clauses"].([]string)), true
 
-	case "Mutation.createDataType":
+	case "Mutation.CreateDataType":
 		if e.complexity.Mutation.CreateDataType == nil {
 			break
 		}
 
-		args, err := ec.field_Mutation_createDataType_args(context.TODO(), rawArgs)
+		args, err := ec.field_Mutation_CreateDataType_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Mutation.CreateDataType(childComplexity, args["display"].(string)), true
 
-	case "Mutation.createGroup":
+	case "Mutation.CreateGroup":
 		if e.complexity.Mutation.CreateGroup == nil {
 			break
 		}
 
-		args, err := ec.field_Mutation_createGroup_args(context.TODO(), rawArgs)
+		args, err := ec.field_Mutation_CreateGroup_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Mutation.CreateGroup(childComplexity, args["display"].(string)), true
 
-	case "Mutation.createPatient":
+	case "Mutation.CreatePatient":
 		if e.complexity.Mutation.CreatePatient == nil {
 			break
 		}
 
-		args, err := ec.field_Mutation_createPatient_args(context.TODO(), rawArgs)
+		args, err := ec.field_Mutation_CreatePatient_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Mutation.CreatePatient(childComplexity, args["display"].(string), args["groups"].([]string), args["dataTypes"].([]string)), true
 
-	case "Mutation.createPractioner":
+	case "Mutation.CreatePractioner":
 		if e.complexity.Mutation.CreatePractioner == nil {
 			break
 		}
 
-		args, err := ec.field_Mutation_createPractioner_args(context.TODO(), rawArgs)
+		args, err := ec.field_Mutation_CreatePractioner_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Mutation.CreatePractioner(childComplexity, args["display"].(string), args["groups"].([]string)), true
 
-	case "Mutation.giveConsent":
+	case "Mutation.GiveConsent":
 		if e.complexity.Mutation.GiveConsent == nil {
 			break
 		}
 
-		args, err := ec.field_Mutation_giveConsent_args(context.TODO(), rawArgs)
+		args, err := ec.field_Mutation_GiveConsent_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Mutation.GiveConsent(childComplexity, args["patientId"].(string), args["contractId"].(string), args["expiration"].(int)), true
 
-	case "Mutation.patientResetPassphase":
+	case "Mutation.PatientResetPassphase":
 		if e.complexity.Mutation.PatientResetPassphase == nil {
 			break
 		}
 
-		args, err := ec.field_Mutation_patientResetPassphase_args(context.TODO(), rawArgs)
+		args, err := ec.field_Mutation_PatientResetPassphase_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Mutation.PatientResetPassphase(childComplexity, args["patientId"].(string), args["restorePhrase"].(string)), true
 
-	case "Mutation.practionerResetPassphase":
+	case "Mutation.PractionerResetPassphase":
 		if e.complexity.Mutation.PractionerResetPassphase == nil {
 			break
 		}
 
-		args, err := ec.field_Mutation_practionerResetPassphase_args(context.TODO(), rawArgs)
+		args, err := ec.field_Mutation_PractionerResetPassphase_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -585,12 +585,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.ConsentEnforcement(childComplexity, args["patientId"].(string), args["practionerId"].(string), args["reason"].(string)), true
 
-	case "Query.dataTypes":
+	case "Query.DataTypes":
 		if e.complexity.Query.DataTypes == nil {
 			break
 		}
 
-		args, err := ec.field_Query_dataTypes_args(context.TODO(), rawArgs)
+		args, err := ec.field_Query_DataTypes_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -785,19 +785,19 @@ type AccessToken {
 }
 
 type Mutation {
-    createDataType(display: String!): DataType!
-    createGroup(display: String!): Group!
-    createPatient(display: String!, groups: [ID!]!, dataTypes: [ID!]!): Patient!
-    createPractioner(display: String!, groups: [ID!]!): Practioner!
-    createConsentEnforcementRule(display: String!, readerGroups: [ID!]!, targetGroups: [ID!]!, expiration: Int!): ConsentEnforcement!
-    createContract(display: String!, clauses: [String!]!): Contract!
-    giveConsent(patientId: ID!, contractId: ID!, expiration: Int!): Signature!
-    patientResetPassphase(patientId: ID!, restorePhrase: String!): Patient!
-    practionerResetPassphase(practionerId: ID!, restorePhrase: String!): Practioner!
+    CreateDataType(display: String!): DataType!
+    CreateGroup(display: String!): Group!
+    CreatePatient(display: String!, groups: [ID!]!, dataTypes: [ID!]!): Patient!
+    CreatePractioner(display: String!, groups: [ID!]!): Practioner!
+    CreateConsentEnforcementRule(display: String!, readerGroups: [ID!]!, targetGroups: [ID!]!, expiration: Int!): ConsentEnforcement!
+    CreateContract(display: String!, clauses: [String!]!): Contract!
+    GiveConsent(patientId: ID!, contractId: ID!, expiration: Int!): Signature!
+    PatientResetPassphase(patientId: ID!, restorePhrase: String!): Patient!
+    PractionerResetPassphase(practionerId: ID!, restorePhrase: String!): Practioner!
 }
 
 type Query {
-    dataTypes(limit: Int = 25, offset: Int = 0): [DataType!]!
+    DataTypes(limit: Int = 25, offset: Int = 0): [DataType!]!
     PublicGroups(display: String, limit: Int = 25, offset: Int = 0): [Group!]!
     Consent(patientId: ID!, practionerId: ID!, dataTypeId: ID): AccessToken
     ConsentEnforcement(patientId: ID!, practionerId: ID!, reason: String!): AccessToken
@@ -809,7 +809,7 @@ type Query {
 
 // region    ***************************** args.gotpl *****************************
 
-func (ec *executionContext) field_Mutation_createConsentEnforcementRule_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Mutation_CreateConsentEnforcementRule_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
@@ -847,7 +847,7 @@ func (ec *executionContext) field_Mutation_createConsentEnforcementRule_args(ctx
 	return args, nil
 }
 
-func (ec *executionContext) field_Mutation_createContract_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Mutation_CreateContract_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
@@ -869,7 +869,7 @@ func (ec *executionContext) field_Mutation_createContract_args(ctx context.Conte
 	return args, nil
 }
 
-func (ec *executionContext) field_Mutation_createDataType_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Mutation_CreateDataType_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
@@ -883,7 +883,7 @@ func (ec *executionContext) field_Mutation_createDataType_args(ctx context.Conte
 	return args, nil
 }
 
-func (ec *executionContext) field_Mutation_createGroup_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Mutation_CreateGroup_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
@@ -897,7 +897,7 @@ func (ec *executionContext) field_Mutation_createGroup_args(ctx context.Context,
 	return args, nil
 }
 
-func (ec *executionContext) field_Mutation_createPatient_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Mutation_CreatePatient_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
@@ -927,7 +927,7 @@ func (ec *executionContext) field_Mutation_createPatient_args(ctx context.Contex
 	return args, nil
 }
 
-func (ec *executionContext) field_Mutation_createPractioner_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Mutation_CreatePractioner_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
@@ -949,7 +949,7 @@ func (ec *executionContext) field_Mutation_createPractioner_args(ctx context.Con
 	return args, nil
 }
 
-func (ec *executionContext) field_Mutation_giveConsent_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Mutation_GiveConsent_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
@@ -979,7 +979,7 @@ func (ec *executionContext) field_Mutation_giveConsent_args(ctx context.Context,
 	return args, nil
 }
 
-func (ec *executionContext) field_Mutation_patientResetPassphase_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Mutation_PatientResetPassphase_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
@@ -1001,7 +1001,7 @@ func (ec *executionContext) field_Mutation_patientResetPassphase_args(ctx contex
 	return args, nil
 }
 
-func (ec *executionContext) field_Mutation_practionerResetPassphase_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Mutation_PractionerResetPassphase_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
@@ -1083,6 +1083,28 @@ func (ec *executionContext) field_Query_Consent_args(ctx context.Context, rawArg
 	return args, nil
 }
 
+func (ec *executionContext) field_Query_DataTypes_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg1
+	return args, nil
+}
+
 func (ec *executionContext) field_Query_PublicGroups_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
@@ -1124,28 +1146,6 @@ func (ec *executionContext) field_Query___type_args(ctx context.Context, rawArgs
 		}
 	}
 	args["name"] = arg0
-	return args, nil
-}
-
-func (ec *executionContext) field_Query_dataTypes_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
-	var err error
-	args := map[string]interface{}{}
-	var arg0 *int
-	if tmp, ok := rawArgs["limit"]; ok {
-		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["limit"] = arg0
-	var arg1 *int
-	if tmp, ok := rawArgs["offset"]; ok {
-		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["offset"] = arg1
 	return args, nil
 }
 
@@ -2073,7 +2073,7 @@ func (ec *executionContext) _Group_isPublic(ctx context.Context, field graphql.C
 	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_createDataType(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Mutation_CreateDataType(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -2090,7 +2090,7 @@ func (ec *executionContext) _Mutation_createDataType(ctx context.Context, field 
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Mutation_createDataType_args(ctx, rawArgs)
+	args, err := ec.field_Mutation_CreateDataType_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2117,7 +2117,7 @@ func (ec *executionContext) _Mutation_createDataType(ctx context.Context, field 
 	return ec.marshalNDataType2ᚖgithubᚗcomᚋjoseteodoroᚋconsentᚑenforcementᚋpkgᚋconsent_managerᚐDataType(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_createGroup(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Mutation_CreateGroup(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -2134,7 +2134,7 @@ func (ec *executionContext) _Mutation_createGroup(ctx context.Context, field gra
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Mutation_createGroup_args(ctx, rawArgs)
+	args, err := ec.field_Mutation_CreateGroup_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2161,7 +2161,7 @@ func (ec *executionContext) _Mutation_createGroup(ctx context.Context, field gra
 	return ec.marshalNGroup2ᚖgithubᚗcomᚋjoseteodoroᚋconsentᚑenforcementᚋpkgᚋconsent_managerᚐGroup(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_createPatient(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Mutation_CreatePatient(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -2178,7 +2178,7 @@ func (ec *executionContext) _Mutation_createPatient(ctx context.Context, field g
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Mutation_createPatient_args(ctx, rawArgs)
+	args, err := ec.field_Mutation_CreatePatient_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2205,7 +2205,7 @@ func (ec *executionContext) _Mutation_createPatient(ctx context.Context, field g
 	return ec.marshalNPatient2ᚖgithubᚗcomᚋjoseteodoroᚋconsentᚑenforcementᚋpkgᚋconsent_managerᚐPatient(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_createPractioner(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Mutation_CreatePractioner(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -2222,7 +2222,7 @@ func (ec *executionContext) _Mutation_createPractioner(ctx context.Context, fiel
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Mutation_createPractioner_args(ctx, rawArgs)
+	args, err := ec.field_Mutation_CreatePractioner_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2249,7 +2249,7 @@ func (ec *executionContext) _Mutation_createPractioner(ctx context.Context, fiel
 	return ec.marshalNPractioner2ᚖgithubᚗcomᚋjoseteodoroᚋconsentᚑenforcementᚋpkgᚋconsent_managerᚐPractioner(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_createConsentEnforcementRule(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Mutation_CreateConsentEnforcementRule(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -2266,7 +2266,7 @@ func (ec *executionContext) _Mutation_createConsentEnforcementRule(ctx context.C
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Mutation_createConsentEnforcementRule_args(ctx, rawArgs)
+	args, err := ec.field_Mutation_CreateConsentEnforcementRule_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2293,7 +2293,7 @@ func (ec *executionContext) _Mutation_createConsentEnforcementRule(ctx context.C
 	return ec.marshalNConsentEnforcement2ᚖgithubᚗcomᚋjoseteodoroᚋconsentᚑenforcementᚋpkgᚋconsent_managerᚐConsentEnforcement(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_createContract(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Mutation_CreateContract(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -2310,7 +2310,7 @@ func (ec *executionContext) _Mutation_createContract(ctx context.Context, field 
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Mutation_createContract_args(ctx, rawArgs)
+	args, err := ec.field_Mutation_CreateContract_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2337,7 +2337,7 @@ func (ec *executionContext) _Mutation_createContract(ctx context.Context, field 
 	return ec.marshalNContract2ᚖgithubᚗcomᚋjoseteodoroᚋconsentᚑenforcementᚋpkgᚋconsent_managerᚐContract(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_giveConsent(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Mutation_GiveConsent(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -2354,7 +2354,7 @@ func (ec *executionContext) _Mutation_giveConsent(ctx context.Context, field gra
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Mutation_giveConsent_args(ctx, rawArgs)
+	args, err := ec.field_Mutation_GiveConsent_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2381,7 +2381,7 @@ func (ec *executionContext) _Mutation_giveConsent(ctx context.Context, field gra
 	return ec.marshalNSignature2ᚖgithubᚗcomᚋjoseteodoroᚋconsentᚑenforcementᚋpkgᚋconsent_managerᚐSignature(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_patientResetPassphase(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Mutation_PatientResetPassphase(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -2398,7 +2398,7 @@ func (ec *executionContext) _Mutation_patientResetPassphase(ctx context.Context,
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Mutation_patientResetPassphase_args(ctx, rawArgs)
+	args, err := ec.field_Mutation_PatientResetPassphase_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2425,7 +2425,7 @@ func (ec *executionContext) _Mutation_patientResetPassphase(ctx context.Context,
 	return ec.marshalNPatient2ᚖgithubᚗcomᚋjoseteodoroᚋconsentᚑenforcementᚋpkgᚋconsent_managerᚐPatient(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_practionerResetPassphase(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Mutation_PractionerResetPassphase(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -2442,7 +2442,7 @@ func (ec *executionContext) _Mutation_practionerResetPassphase(ctx context.Conte
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Mutation_practionerResetPassphase_args(ctx, rawArgs)
+	args, err := ec.field_Mutation_PractionerResetPassphase_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -3098,7 +3098,7 @@ func (ec *executionContext) _Practioner_passprase(ctx context.Context, field gra
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Query_dataTypes(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Query_DataTypes(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -3115,7 +3115,7 @@ func (ec *executionContext) _Query_dataTypes(ctx context.Context, field graphql.
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Query_dataTypes_args(ctx, rawArgs)
+	args, err := ec.field_Query_DataTypes_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -4969,48 +4969,48 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Mutation")
-		case "createDataType":
-			out.Values[i] = ec._Mutation_createDataType(ctx, field)
+		case "CreateDataType":
+			out.Values[i] = ec._Mutation_CreateDataType(ctx, field)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "createGroup":
-			out.Values[i] = ec._Mutation_createGroup(ctx, field)
+		case "CreateGroup":
+			out.Values[i] = ec._Mutation_CreateGroup(ctx, field)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "createPatient":
-			out.Values[i] = ec._Mutation_createPatient(ctx, field)
+		case "CreatePatient":
+			out.Values[i] = ec._Mutation_CreatePatient(ctx, field)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "createPractioner":
-			out.Values[i] = ec._Mutation_createPractioner(ctx, field)
+		case "CreatePractioner":
+			out.Values[i] = ec._Mutation_CreatePractioner(ctx, field)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "createConsentEnforcementRule":
-			out.Values[i] = ec._Mutation_createConsentEnforcementRule(ctx, field)
+		case "CreateConsentEnforcementRule":
+			out.Values[i] = ec._Mutation_CreateConsentEnforcementRule(ctx, field)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "createContract":
-			out.Values[i] = ec._Mutation_createContract(ctx, field)
+		case "CreateContract":
+			out.Values[i] = ec._Mutation_CreateContract(ctx, field)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "giveConsent":
-			out.Values[i] = ec._Mutation_giveConsent(ctx, field)
+		case "GiveConsent":
+			out.Values[i] = ec._Mutation_GiveConsent(ctx, field)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "patientResetPassphase":
-			out.Values[i] = ec._Mutation_patientResetPassphase(ctx, field)
+		case "PatientResetPassphase":
+			out.Values[i] = ec._Mutation_PatientResetPassphase(ctx, field)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "practionerResetPassphase":
-			out.Values[i] = ec._Mutation_practionerResetPassphase(ctx, field)
+		case "PractionerResetPassphase":
+			out.Values[i] = ec._Mutation_PractionerResetPassphase(ctx, field)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
@@ -5169,7 +5169,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Query")
-		case "dataTypes":
+		case "DataTypes":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -5177,7 +5177,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_dataTypes(ctx, field)
+				res = ec._Query_DataTypes(ctx, field)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}

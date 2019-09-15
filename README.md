@@ -2,8 +2,7 @@
 
 Consent management and enforcement PoC
 
-PoC for consent management and enforcement using Go + graphql + couchdb
-
+PoC for consent management / enforcement using Go + graphql + couchdb
 
 Install all dependencies.
 
