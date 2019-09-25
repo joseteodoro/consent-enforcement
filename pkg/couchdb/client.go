@@ -35,7 +35,15 @@ func (config *ConnectionConfig) dbURL() string {
 
 // Connect create a new connection if the connection config is correct
 func Connect(config *ConnectionConfig) (*Connection, error) {
-	response, err := http.Get(config.baseURL())
+	configuration := config
+	if config == nil {
+		configuration = &ConnectionConfig{
+			host: "127.0.0.1",
+			port: 5984,
+			db:   "db",
+		}
+	}
+	response, err := http.Get(configuration.baseURL())
 	if err != nil {
 		return nil, err
 	}
