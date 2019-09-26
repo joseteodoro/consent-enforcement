@@ -9,6 +9,7 @@ type Resolver struct{}
 func (r *Resolver) Mutation() MutationResolver {
 	return &mutationResolver{r}
 }
+
 func (r *Resolver) Query() QueryResolver {
 	return &queryResolver{r}
 }
@@ -16,8 +17,14 @@ func (r *Resolver) Query() QueryResolver {
 type mutationResolver struct{ *Resolver }
 
 func (r *mutationResolver) CreateDataType(ctx context.Context, display string) (*DataType, error) {
-	panic("not implemented")
+	dataType := &DataType{Display: display}
+	err := StoreDataType(dataType)
+	if err != nil {
+		return nil, err
+	}
+	return dataType, nil
 }
+
 func (r *mutationResolver) CreateGroup(ctx context.Context, display string) (*Group, error) {
 	panic("not implemented")
 }
@@ -46,7 +53,7 @@ func (r *mutationResolver) PractionerResetPassphase(ctx context.Context, practio
 type queryResolver struct{ *Resolver }
 
 func (r *queryResolver) DataTypes(ctx context.Context, limit *int, offset *int) ([]*DataType, error) {
-	panic("not implemented")
+	return ListDataTypes()
 }
 func (r *queryResolver) PublicGroups(ctx context.Context, display *string, limit *int, offset *int) ([]*Group, error) {
 	panic("not implemented")

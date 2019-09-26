@@ -22,15 +22,19 @@ type Connection struct {
 }
 
 func (config *ConnectionConfig) endpointURL(endpoint string) string {
-	return fmt.Sprintf("http://%s:%d/%s", config.host, config.port, endpoint)
+	return fmt.Sprintf("http://%s:%d/%s/%s", config.host, config.port, config.db, endpoint)
+}
+
+func (config *ConnectionConfig) documentURL(endpoint string) string {
+	return fmt.Sprintf("http://%s:%d/%s/%s", config.host, config.port, config.db, endpoint)
 }
 
 func (config *ConnectionConfig) baseURL() string {
-	return config.endpointURL("")
+	return fmt.Sprintf("http://%s:%d", config.host, config.port)
 }
 
 func (config *ConnectionConfig) dbURL() string {
-	return config.endpointURL(config.db)
+	return config.endpointURL("")
 }
 
 // Connect create a new connection if the connection config is correct
@@ -58,7 +62,7 @@ func Connect(config *ConnectionConfig) (*Connection, error) {
 const postContentType = "application/json"
 
 // Store stores a document on the connected database
-func (connection *Connection) Store(document *interface{}) (body string, err error) {
+func (connection *Connection) Store(document interface{}) (body string, err error) {
 	jsonValue, _ := json.Marshal(document)
 	buffer := bytes.NewBuffer(jsonValue)
 	url := connection.config.dbURL()
@@ -89,4 +93,50 @@ func (connection *Connection) QueryJSON(queryJSON string) (*[]map[string]interfa
 	}
 
 	return &dat, nil
+}
+
+// QueryJSONRaw queries the server using the queryJson as part of a mango query and returns the raw
+func (connection *Connection) QueryJSONRaw(queryJSON string) ([]byte, error) {
+	buffer := bytes.NewBufferString(queryJSON)
+	url := connection.config.dbURL()
+	resp, err := http.Post(url, postContentType, buffer)
+
+	if err != nil {
+		return nil, err
+	}
+
+	data, _ := ioutil.ReadAll(resp.Body)
+	return []byte(data), nil
+}
+
+// Load loads a document by its _id
+func (connection *Connection) Load(id string) (*map[string]interface{}, error) {
+	url := connection.config.endpointURL(fmt.Sprintf("/%s", id))
+	resp, err := http.Get(url)
+
+	if err != nil {
+		return nil, err
+	}
+
+	data, _ := ioutil.ReadAll(resp.Body)
+	byt := []byte(data)
+	var dat map[string]interface{}
+	if err := json.Unmarshal(byt, &dat); err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// LoadRaw loads a document by its _id returning the json string as byte slice
+func (connection *Connection) LoadRaw(id string) ([]byte, error) {
+	url := connection.config.endpointURL(fmt.Sprintf("/%s", id))
+	resp, err := http.Get(url)
+
+	if err != nil {
+		return nil, err
+	}
+
+	data, _ := ioutil.ReadAll(resp.Body)
+	return []byte(data), nil
 }
