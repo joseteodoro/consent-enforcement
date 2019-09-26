@@ -78,7 +78,7 @@ func (connection *Connection) Store(document interface{}) (body string, err erro
 // QueryJSON queries the server using the queryJson as part of a mango query
 func (connection *Connection) QueryJSON(queryJSON string) (*[]map[string]interface{}, error) {
 	buffer := bytes.NewBufferString(queryJSON)
-	url := connection.config.dbURL()
+	url := connection.config.endpointURL("_find")
 	resp, err := http.Post(url, postContentType, buffer)
 
 	if err != nil {
@@ -98,7 +98,7 @@ func (connection *Connection) QueryJSON(queryJSON string) (*[]map[string]interfa
 // QueryJSONRaw queries the server using the queryJson as part of a mango query and returns the raw
 func (connection *Connection) QueryJSONRaw(queryJSON string) ([]byte, error) {
 	buffer := bytes.NewBufferString(queryJSON)
-	url := connection.config.dbURL()
+	url := connection.config.endpointURL("_find")
 	resp, err := http.Post(url, postContentType, buffer)
 
 	if err != nil {

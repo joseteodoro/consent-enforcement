@@ -2,6 +2,7 @@ package consent_manager
 
 import (
 	"encoding/json"
+	"fmt"
 
 	couchdb "github.com/joseteodoro/consent-enforcement/pkg/couchdb"
 )
@@ -36,6 +37,10 @@ func StoreDataType(dataType *DataType) error {
 	return err
 }
 
+type dataTypes struct {
+	docs []*DataType
+}
+
 // ListDataTypes list all datatypes
 func ListDataTypes() ([]*DataType, error) {
 	connection, err := couchdb.Connect(nil)
@@ -53,10 +58,11 @@ func ListDataTypes() ([]*DataType, error) {
 	if err != nil {
 		return nil, err
 	}
-	var rows []*DataType
+	fmt.Printf(string(bytes))
+	var rows dataTypes
 	if err := json.Unmarshal(bytes, &rows); err != nil {
 		return nil, err
 	}
 
-	return rows, nil
+	return rows.docs, nil
 }
