@@ -56,7 +56,7 @@ func Connect(config *ConnectionConfig) (*Connection, error) {
 		return nil, err
 	}
 
-	return &Connection{config: config}, nil
+	return &Connection{config: configuration}, nil
 }
 
 const postContentType = "application/json"
