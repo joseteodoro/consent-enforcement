@@ -35,7 +35,7 @@ go run scripts/gqlgen.go
 Start the server.
 
 ```
-go run server/server.go
+go run cmd/server/server.go
 ```
 
 Open http://localhost:8080/ for GraphQL Playground
