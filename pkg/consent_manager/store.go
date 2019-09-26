@@ -27,14 +27,15 @@ func DataTypeByID(ID string) (*DataTypeDocument, error) {
 }
 
 // StoreDataType stores the DataTypeDocument
-func StoreDataType(dataType *DataType) error {
+func StoreDataType(dataType *DataType) (*DataType, error) {
 	connection, err := couchdb.Connect(nil)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	document := MappingFromDataType(dataType)
 	_, err = connection.Store(document)
-	return err
+
+	return dataType, nil
 }
 
 type dataTypes struct {

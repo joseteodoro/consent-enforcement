@@ -61,18 +61,38 @@ func Connect(config *ConnectionConfig) (*Connection, error) {
 
 const postContentType = "application/json"
 
+type couchResponse struct {
+	Ok     bool   `json:"ok"`
+	Err    string `json:"error"`
+	Reason string `json:"reason"`
+}
+
+func validateResult(data []byte) error {
+	var res couchResponse
+	if err := json.Unmarshal(data, &res); err != nil {
+		return err
+	}
+	if len(res.Err) > 0 {
+		return fmt.Errorf("%s Reason: %s", res.Err, res.Reason)
+	}
+	return nil
+}
+
 // Store stores a document on the connected database
-func (connection *Connection) Store(document interface{}) (body string, err error) {
+func (connection *Connection) Store(document interface{}) (data []byte, err error) {
 	jsonValue, _ := json.Marshal(document)
 	buffer := bytes.NewBuffer(jsonValue)
 	url := connection.config.dbURL()
 	resp, err := http.Post(url, postContentType, buffer)
 
 	if err != nil {
-		return "", err
+		return nil, err
 	}
-	data, _ := ioutil.ReadAll(resp.Body)
-	return string(data), nil
+	data, _ = ioutil.ReadAll(resp.Body)
+	if err = validateResult(data); err != nil {
+		return nil, err
+	}
+	return data, nil
 }
 
 // QueryJSON queries the server using the queryJson as part of a mango query

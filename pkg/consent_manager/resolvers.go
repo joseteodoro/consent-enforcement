@@ -18,11 +18,11 @@ type mutationResolver struct{ *Resolver }
 
 func (r *mutationResolver) CreateDataType(ctx context.Context, display string) (*DataType, error) {
 	dataType := &DataType{Display: display}
-	err := StoreDataType(dataType)
+	created, err := StoreDataType(dataType)
 	if err != nil {
 		return nil, err
 	}
-	return dataType, nil
+	return created, nil
 }
 
 func (r *mutationResolver) CreateGroup(ctx context.Context, display string) (*Group, error) {

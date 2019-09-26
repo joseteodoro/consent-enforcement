@@ -6,11 +6,11 @@ import (
 
 // DataTypeDocument mapping from DataType to a document on couchdb
 type DataTypeDocument struct {
-	DBId     string `json:"_id"`
-	Revision string `json:"_revision"`
-	ID       string `json:"id"`
-	Display  string `json:"display"`
-	UUID     string `json:"uuid"`
+	DBId string `json:"_id"`
+	// Revision string `json:"_revision"`
+	ID      string `json:"id"`
+	Display string `json:"display"`
+	UUID    string `json:"uuid"`
 	*DataType
 }
 
